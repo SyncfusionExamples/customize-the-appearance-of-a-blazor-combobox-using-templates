@@ -1,0 +1,124 @@
+﻿@page "/"
+@using Syncfusion.Blazor.DropDowns
+@using Syncfusion.Blazor.Data
+
+
+<div class="control_wrapper">
+    <SfComboBox TItem="EmployeeData" TValue="string" Placeholder="Select a name" DataSource="@Data">
+        <ComboBoxTemplates TItem="EmployeeData">
+            <ItemTemplate>
+                <div>
+                    <img class="empImage" src="css/images/@((context as EmployeeData).EmployeeImageID).png" alt="employee" />
+                    <div class="ename"> @((context as EmployeeData).FirstName) </div>
+                    <div class="country"> @((context as EmployeeData).Country) </div>
+                </div>
+            </ItemTemplate>
+            <HeaderTemplate>
+                <span class='header'>
+                    <span class='photo_header'>Photo</span>
+                    <span class='info_header'>Employee Info</span>
+                </span>
+            </HeaderTemplate>
+            <FooterTemplate>
+                <span class='footer'>My Footer</span>
+            </FooterTemplate>
+            <NoRecordsTemplate>
+                <span class='norecord'>No Data Available!</span>
+            </NoRecordsTemplate>
+        </ComboBoxTemplates>
+        <ComboBoxFieldSettings Text="FirstName" Value="Country"></ComboBoxFieldSettings>
+    </SfComboBox>
+</div>
+
+@code {
+
+    public class EmployeeData
+    {
+        public string FirstName { get; set; }
+        public string Country { get; set; }
+        public string EmployeeImageID { get; set; }
+    }
+
+    List<EmployeeData> Data = new List<EmployeeData>
+    {
+        new EmployeeData() { FirstName = "Andrew Fuller",  Country = "England", EmployeeImageID = "7" },
+        new EmployeeData() { FirstName = "Anne Dodsworth", Country = "USA", EmployeeImageID = "1" },
+        new EmployeeData() { FirstName = "Janet Leverling", Country = "USA", EmployeeImageID = "3" },
+        new EmployeeData() { FirstName = "Laura Callahan", Country = "USA", EmployeeImageID = "2"},
+        new EmployeeData() { FirstName = "Margaret Peacock", Country = "USA", EmployeeImageID = "6"},
+        new EmployeeData() { FirstName = "Michael Suyama", Country = "USA", EmployeeImageID = "9" },
+        new EmployeeData() { FirstName = "Nancy Davolio", Country = "USA", EmployeeImageID = "4"},
+        new EmployeeData() { FirstName = "Robert King", Country = "England", EmployeeImageID = "8"},
+        new EmployeeData() { FirstName = "Steven Buchanan", Country = "England", EmployeeImageID = "10"},
+    };
+}
+
+<style>
+    .control_wrapper {
+        width: 260px;
+        margin-left: 25%;
+        margin-right: 40%;
+        margin-top: 10%;
+        margin-bottom: 15%;
+    }
+
+
+
+    .empImage {
+        margin: 6px 16px;
+        float: left;
+        width: 50px;
+        height: 50px;
+    }
+
+    .ename {
+        display: block !important;
+        opacity: .87;
+        font-size: 16px;
+        margin-top: 8px;
+    }
+
+    .country {
+        opacity: .54;
+        font-size: 14px;
+        margin-top: -15px;
+        margin-bottom: 7px;
+    }
+
+    .header {
+        display: table;
+        width: 100%;
+        margin: auto;
+        height: 40px;
+        font-size: 15px;
+        font-weight: 600;
+        text-indent: 16px;
+    }
+
+    .photo_header {
+        display: table-cell;
+        vertical-align: middle;
+        width: 22%;
+        text-indent: 16px;
+    }
+
+    .info_header {
+        display: table-cell;
+        vertical-align: middle;
+        width: 50%;
+    }
+
+    .footer {
+        text-indent: 1.2em;
+        display: block;
+        font-size: 15px;
+        line-height: 40px;
+        border-top: 1px solid #e0e0e0;
+    }
+
+
+    .norecord {
+        font-size: 15px;
+        vertical-align: middle;
+    }
+</style>
